@@ -1,0 +1,72 @@
+﻿# .NET Build Artifacts
+bin/
+obj/
+out/
+[Bb]in/
+[Oo]bj/
+
+# Test & Coverage
+TestResults/
+coverage/
+
+# NuGet
+*.nupkg
+packages/
+
+# Logs
+*.log
+
+# Environment & Secrets
+.env
+.env.*
+secrets.json
+appsettings.Development.json
+
+# Database 
+*.sql
+*.dump
+*.db
+
+# Docker
+docker-compose.override.yml
+docker-compose.dev.yml
+docker.env
+
+# JetBrains Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Visual Studio
+.vs/
+
+# User-specific settings
+*.user
+*.suo
+*.userosscache
+*.DotSettings.user
+
+# Node (if frontend exists)
+node_modules/
+dist/
+*.tsbuildinfo
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Misc / Local Tools
+.requests/
+.mono/
+aspnet-core-dev-cert.pfx
+.claude/
+
+# Local Services / Dev Tools
+/volume
+/localstack
+/scripts
+
+# Generated Code
+[Gg]enerated/
+
