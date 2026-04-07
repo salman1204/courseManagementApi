@@ -70,3 +70,4 @@ aspnet-core-dev-cert.pfx
 # Generated Code
 [Gg]enerated/
 
+/Migrations/

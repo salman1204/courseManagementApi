@@ -1,12 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CourseManagementApi.Controllers;
 
-public class CourseController : Controller
+[Route("api/course")]
+[ApiController]
+public class CourseController : ControllerBase
 {
-    // GET
-    public IActionResult Index()
+    private readonly AppDbContext _context;
+    
+    public CourseController(AppDbContext context)
     {
-        return View();
+        _context = context;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetCourses()
+    {
+        var courses = await _context.Courses.ToListAsync();
+        return Ok(courses);
     }
 }
