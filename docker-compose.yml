@@ -8,7 +8,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: course_db>
+      POSTGRES_DB: course_db
     ports:
       - "5432:5432"
     volumes:
@@ -21,6 +21,9 @@ services:
       - postgres
     volumes:
       - .:/app
+      - app_bin:/app/bin
+      - app_obj:/app/obj
+      - nuget_cache:/root/.nuget/packages
     ports:
       - "8080:8080"
     environment:
@@ -30,3 +33,6 @@ services:
 
 volumes:
   postgres_data:
+  app_bin:
+  app_obj:
+  nuget_cache:
