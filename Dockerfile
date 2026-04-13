@@ -1,19 +1,14 @@
-﻿# Base runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
-WORKDIR /app
-EXPOSE 8080
+﻿FROM mcr.microsoft.com/dotnet/sdk:9.0
 
-# Build image
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
-WORKDIR /src
+WORKDIR /app
+
 COPY ["CourseManagementApi.csproj", "./"]
 RUN dotnet restore
 
 COPY . .
-RUN dotnet publish -c Release -o /app/publish
 
-# Final image
-FROM base AS final
-WORKDIR /app
-COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "CourseManagementApi.dll"]
+EXPOSE 8080
+
+ENV DOTNET_USE_POLLING_FILE_WATCHER=1
+
+CMD ["dotnet", "watch", "run", "--urls=http://0.0.0.0:8080"]
