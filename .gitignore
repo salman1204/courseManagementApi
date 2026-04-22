@@ -71,3 +71,4 @@ aspnet-core-dev-cert.pfx
 [Gg]enerated/
 
 /Migrations/
+*.csproj.lscache
