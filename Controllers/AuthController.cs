@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CourseManagementApi.Models;
+using CourseManagementApi.Enums;
 
 namespace CourseManagementApi.Controllers;
 
@@ -23,14 +24,17 @@ public class AuthController : ControllerBase
         if (userExists)
             return BadRequest("Username already exists");
 
+        if (!Enum.TryParse<UserRole>(registerDto.Role, true, out var parsedRole))
+        {
+            return BadRequest("Invalid role. Allowed values: Staff, Student");
+        }
+
         var passwordHash = BCrypt.Net.BCrypt.HashPassword(registerDto.Password);
         var user = new User
         {
             Username = registerDto.Username,
             PasswordHash = passwordHash,
-            Role = string.Equals(registerDto.Role, "staff", StringComparison.OrdinalIgnoreCase)
-                ? UserRole.Staff
-                : UserRole.Student
+            Role = parsedRole
         };
         _context.Users.Add(user);
         await _context.SaveChangesAsync();

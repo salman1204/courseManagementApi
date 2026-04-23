@@ -1,7 +1,6 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-
+using CourseManagementApi.Enums;
 namespace CourseManagementApi.Models;
 
 public class User
@@ -22,8 +21,3 @@ public class User
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
 
-public enum UserRole
-{
-    Staff,
-    Student
-}
